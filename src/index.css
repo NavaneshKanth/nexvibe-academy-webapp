@@ -1,0 +1,33 @@
+/* Import fonts first to ensure they are available */
+@import "@fontsource/roboto/100.css";
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+@import "@fontsource/roboto/900.css";
+
+/* Import the main Tailwind directive */
+@import "tailwindcss";
+
+/* Define your theme variables using the @theme at-rule */
+@theme {
+  --color-primary: #002245;
+  --color-secondary: #4b7ba8;
+  --color-on-primary: #ffffff;
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f8f9fa;
+  --color-text-header: var(--color-primary);
+  --color-text-body: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: "Roboto", sans-serif;
+}
+
+/* Apply base styles to the html and body elements */
+html,
+body {
+  @apply font-sans antialiased;
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
+  scroll-behavior: smooth;
+}
