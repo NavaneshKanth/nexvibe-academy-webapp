@@ -11,16 +11,30 @@
 
 /* Define your theme variables using the @theme at-rule */
 @theme {
-  --color-primary: #002245;
-  --color-secondary: #4b7ba8;
+  --color-primary: #044040;
+  /* Deep Teal (Main Dark Color) */
+  --color-secondary: #D92525;
+  /* Vibrant Red (Main Accent) */
+  --color-accent: #8C1F28;
+  /* Deep Red Accent */
+  --color-warning: #D92525;
+  /* Also for warnings/alerts */
   --color-on-primary: #ffffff;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f8f9fa;
-  --color-text-header: var(--color-primary);
-  --color-text-body: #1f2937;
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --color-bg: #1e1e1e;
+  /* Very Dark Gray for background */
+  --color-bg-subtle: #2d2d2d;
+  /* Slightly lighter dark gray */
+  --color-text-header: var(--color-on-primary);
+  --color-text-body: #f5f5f5;
+  /* Off-white for readability */
+  --color-text-muted: #a1a1a1;
+  --color-border: #444444;
   --font-sans: "Roboto", sans-serif;
+  --color-bg-light: #f5f5f5;
+
+  --color-text-dark: #222222;
+  --color-accent-dark: #d84518;
+  --color-border-light: #c0c0c0;
 }
 
 /* Apply base styles to the html and body elements */
@@ -30,4 +44,32 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-body);
   scroll-behavior: smooth;
+}
+
+/* Add this block to the end of your CSS file */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg-subtle);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-subtle);
+}
+
+/* For Firefox, which uses a different syntax */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) var(--color-bg-subtle);
+}
+
+/* Add this to your global stylesheet */
+.flex>div:first-child::before,
+.flex>div:last-child::after {
+  content: none;
 }

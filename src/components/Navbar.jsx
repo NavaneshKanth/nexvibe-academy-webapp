@@ -1,83 +1,125 @@
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-const Navbar = () => {
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Courses", href: "#courses" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Contact", href: "#contact" },
+];
+
+const Navbar = ({ onLoginClick, onRegisterClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Course", href: "#courses" },
-    { label: "Why Us", href: "#why-us" },
-    { label: "Contact", href: "#contact" },
-  ];
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const handleLinkClick = () => setIsOpen(false);
-
-  // Close menu on resize for a better user experience
+  // Close mobile menu on resize
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(false);
-      }
+    const resize = () => {
+      if (window.innerWidth >= 1024) setIsOpen(false);
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] lg:w-[80%] z-50">
-      <div className="bg-white/30 backdrop-blur-xl rounded-full shadow-xl border border-[--color-border] px-6 lg:px-8 py-3 flex items-center justify-between transition-all duration-500">
-        {/* Logo */}
-        <a href="#home" className="text-[--color-primary] font-bold text-2xl hover:scale-105 transition-transform">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-[80%]">
+      <nav
+        className="rounded-full shadow-2xl border border-[rgba(255,255,255,0.2)]
+          bg-[var(--color-primary)]/70 backdrop-blur-lg px-7 lg:px-6 py-4 flex items-center justify-between transition-all duration-500"
+      >
+        {/* Brand */}
+        <a
+          href="#home"
+          className="text-[var(--color-on-primary)] font-extrabold text-2xl md:text-3xl tracking-tight select-none drop-shadow-md flex-shrink-0"
+        >
           Nexvibe
         </a>
 
-        {/* Desktop Menu and Buttons */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-[--color-text-body] hover:text-[--color-secondary] font-medium transition-colors relative group">
-              {item.label}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[--color-secondary] transition-all duration-300 group-hover:w-full"></span>
+            <a
+              key={item.href}
+              href={item.href}
+              className="relative px-3 py-2 text-[var(--color-text-body)] font-semibold drop-shadow-md
+                hover:text-[var(--color-secondary)] transition-colors group"
+            >
+              <span>{item.label}</span>
+              <span
+                className="absolute left-1/2 -bottom-0.5 w-0 h-0.5 bg-[var(--color-secondary)] rounded-full transition-all duration-300 group-hover:w-3/4 group-hover:left-1/8"
+                style={{ transitionProperty: "width,left" }}
+              />
             </a>
           ))}
-          <div className="flex items-center gap-3 ml-6">
-            <a href="/login" className="px-4 py-2 rounded-full border border-[--color-primary] text-[--color-primary] font-medium hover:bg-[--color-primary] hover:text-white transition-colors duration-300">
-              Login
-            </a>
-            <a href="/register" className="px-5 py-2 rounded-full bg-[--color-primary] text-white font-medium shadow-lg hover:shadow-2xl hover:bg-[--color-secondary] transition-colors duration-300 flex items-center gap-1">
-              Register
-              <ChevronRightIcon className="w-4 h-4" />
-            </a>
-          </div>
-        </nav>
+          <button
+            onClick={onLoginClick}
+            className="ml-4 px-4 py-2 border border-[var(--color-secondary)] text-[var(--color-secondary)] rounded-full
+              font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition duration-200 drop-shadow flex-shrink-0"
+          >
+            Login
+          </button>
+          <button
+            onClick={onRegisterClick}
+            className="px-6 py-2 bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold rounded-full shadow-lg ml-3 flex items-center gap-2
+              hover:bg-[var(--color-accent)] hover:shadow-2xl transition-all drop-shadow flex-shrink-0"
+          >
+            Register
+            <ChevronRightIcon className="w-4 h-4" />
+          </button>
+        </div>
 
-        {/* Mobile Menu Button */}
-        <button onClick={toggleMenu} className="md:hidden text-[--color-primary] z-50 focus:outline-none" aria-label="Toggle mobile menu">
-          {isOpen ? <XMarkIcon className="w-8 h-8" /> : <Bars3Icon className="w-8 h-8" />}
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setIsOpen((v) => !v)}
+          className="lg:hidden z-50 text-[var(--color-on-primary)] focus:outline-none drop-shadow-md"
+          aria-label="Open navigation"
+        >
+          {isOpen ? <XMarkIcon className="h-8 w-8" /> : <Bars3Icon className="h-8 w-8" />}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Dropdown */}
-      <div className={`fixed top-0 left-0 h-full w-full bg-white/50 backdrop-blur-xl flex flex-col justify-center items-center transition-transform duration-500 ease-in-out transform md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <button onClick={toggleMenu} className="absolute top-6 right-8 text-[--color-primary] focus:outline-none" aria-label="Close mobile menu">
-          <XMarkIcon className="w-8 h-8" />
+      {/* Mobile sheet */}
+      <div
+        className={`fixed inset-0 bg-[var(--color-primary)]/90 backdrop-blur-lg z-40 flex flex-col justify-center items-center lg:hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        style={{ top: 0 }}
+      >
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-7 right-7 text-[var(--color-on-primary)] focus:outline-none drop-shadow-md"
+        >
+          <XMarkIcon className="h-8 w-8" />
         </button>
-        <div className="flex flex-col space-y-8 text-center text-3xl font-semibold">
+        <div className="flex flex-col gap-7 text-center text-2xl font-semibold mt-12">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-[--color-text-body] hover:text-[--color-secondary] transition-colors" onClick={handleLinkClick}>
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-[var(--color-on-primary)] hover:text-[var(--color-secondary)] transition-colors drop-shadow-md"
+              onClick={() => setIsOpen(false)}
+            >
               {item.label}
             </a>
           ))}
         </div>
-        <div className="flex flex-col gap-4 mt-8 px-8 w-full max-w-xs">
-          <a href="/login" className="px-4 py-2 text-center rounded-full border border-[--color-primary] text-[--color-primary] font-medium hover:bg-[--color-primary] hover:text-white transition-colors duration-300" onClick={handleLinkClick}>
+        <div className="flex flex-col gap-4 w-full mt-12 max-w-xs px-6">
+          <button
+            onClick={() => {
+              onLoginClick();
+              setIsOpen(false);
+            }}
+            className="w-full px-4 py-2 rounded-full border border-[var(--color-secondary)] text-[var(--color-secondary)] font-semibold text-center hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-primary)] transition-colors drop-shadow"
+          >
             Login
-          </a>
-          <a href="/register" className="px-5 py-2 text-center rounded-full bg-[--color-primary] text-white font-medium shadow-lg hover:shadow-2xl hover:bg-[--color-secondary] transition-colors duration-300" onClick={handleLinkClick}>
+          </button>
+          <button
+            onClick={() => {
+              onRegisterClick();
+              setIsOpen(false);
+            }}
+            className="w-full px-5 py-2 rounded-full text-center bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold shadow-lg hover:bg-[var(--color-accent)] hover:scale-105 hover:shadow-xl transition-all drop-shadow"
+          >
             Register
-          </a>
+          </button>
         </div>
       </div>
     </header>
