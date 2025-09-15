@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "@heroicons/react/24/solid";
-import blobBG from "../../../assets/blob-scene-haikei.svg";
 
 // Animation Variants
 const containerVariants = {
@@ -37,7 +36,7 @@ function Courses({ onRegisterClick }) {
       <div
         className="pointer-events-none absolute inset-0  z-0"
         style={{
-          backgroundImage: `url(${blobBG})`,
+          backgroundImage: `url("/blobBG.svg")`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'bottom right',
           backgroundSize: '120%',

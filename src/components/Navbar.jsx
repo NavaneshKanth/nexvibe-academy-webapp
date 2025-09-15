@@ -25,14 +25,21 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-[80%]">
       <nav
         className="rounded-full shadow-2xl border border-[rgba(255,255,255,0.2)]
-          bg-[var(--color-primary)]/70 backdrop-blur-lg px-7 lg:px-6 py-4 flex items-center justify-between transition-all duration-500"
+          bg-[var(--color-primary)]/70 backdrop-blur-lg px-7 lg:px-6 py-2 flex items-center justify-between transition-all duration-500"
       >
         {/* Brand */}
         <a
           href="#home"
-          className="text-[var(--color-on-primary)] font-extrabold text-2xl md:text-3xl tracking-tight select-none drop-shadow-md flex-shrink-0"
+          className="drop-shadow-md select-none flex-shrink-0 flex items-center gap-2 md:gap-0"
         >
-          Nexvibe
+          <img
+            src="/favicon2.png"
+            alt="Nexvibe Logo"
+            className="h-12"
+          />
+          <span className="text-[var(--color-on-primary)] font-extrabold text-2xl md:text-3xl tracking-tight">
+            NEXVIBE
+          </span>
         </a>
 
         {/* Desktop Links */}

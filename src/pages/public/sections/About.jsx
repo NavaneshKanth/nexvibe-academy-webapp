@@ -16,7 +16,7 @@ const features = [
   {
     label: "Cutting-edge Platform",
     desc: "You get exclusive access to data tools, analytics, and active community forums.",
-    color: "var(--color-primary)",
+    color: "var(--color-warning)",
   },
   {
     label: "Flexible Learning",
@@ -64,11 +64,18 @@ function About() {
           className="lg:w-1/2 w-full flex items-center justify-center"
         >
           <div className="relative">
-            <img
+            <motion.img // Changed to motion.img
               src={marketvalueup}
               alt="Trading Education Visual"
               className="w-full max-w-[440px] mx-auto rounded-3xl shadow-2xl border-[5px] border-[var(--color-primary)]"
               style={{ background: "linear-gradient(135deg, var(--color-bg) 20%, var(--color-bg-subtle) 100%)" }}
+              whileHover={{
+                scale: 1.03, // Slightly enlarge the image
+                rotate: 1.5, // A subtle rotation
+                boxShadow: "0 20px 30px rgba(0,0,0,0.3)", // A more pronounced shadow
+                // You can add other properties here, e.g., filter: "brightness(1.1)"
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }} // Transition for hover
             />
             <div className="absolute top-5 left-4 w-24 h-24 rounded-full bg-[var(--color-secondary)] blur-3xl opacity-60 pointer-events-none animate-pulse" />
           </div>

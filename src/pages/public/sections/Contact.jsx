@@ -45,15 +45,15 @@ function Contact() {
               <div className="flex flex-col space-y-6">
                 <div className="flex items-center gap-4">
                   <MapPinIcon className="w-8 h-8 flex-shrink-0 text-[var(--color-secondary)]" />
-                  <p className="text-lg text-[var(--color-text-body)]">Dubai, UAE (Office Address)</p>
+                  <p className="text-lg text-[var(--color-text-body)]">Dubai, UAE</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <PhoneIcon className="w-8 h-8 flex-shrink-0 text-[var(--color-secondary)]" />
                   <a
-                    href="tel:+971xxxxxxxxxx"
+                    href="tel:+971522967505"
                     className="text-lg text-[var(--color-text-body)] hover:text-[var(--color-secondary)] transition-colors"
                   >
-                    +971 XX XXX XXXX (WhatsApp / Phone)
+                    +971 52 296 7505(WhatsApp / Phone)
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
@@ -62,7 +62,7 @@ function Contact() {
                     href="mailto:info@dubaitradingacademy.com"
                     className="text-lg text-[var(--color-text-body)] hover:text-[var(--color-secondary)] transition-colors"
                   >
-                    info@dubaitradingacademy.com
+                    nexvibeinstitute@gmail.com
                   </a>
                 </div>
               </div>

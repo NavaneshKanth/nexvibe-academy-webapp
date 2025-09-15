@@ -33,7 +33,7 @@ const menuItemVariants = {
 
 export default function FloatingButtons() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const contactNumber = "+971522087819";
+  const contactNumber = "+971522967505";
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   

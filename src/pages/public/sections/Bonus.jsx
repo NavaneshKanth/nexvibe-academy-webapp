@@ -75,7 +75,7 @@ export default function Bonus({ onRegisterClick }) {
           variants={itemVariants}
         >
           <span className="block text-[var(--color-secondary)] mb-2">Exclusive Bonus</span>
-          Moneypit Gold Strategy
+          Our Signature Strategy
         </motion.h2>
 
         <motion.p

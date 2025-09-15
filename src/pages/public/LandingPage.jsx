@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
@@ -20,7 +20,6 @@ import MarketScreenerModal from "../../components/MarketScreenerModal";
 import FloatingFaqButton from "../../components/FloatingFaqButton";
 import FaqModal from "../../components/FaqModal";
 import LearnTradeEarn from "../../components/LearnTradeEarn";
-import TradingViewChart from "../../components/TradingViewChart";
 
 function LandingPage() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
@@ -28,10 +27,16 @@ function LandingPage() {
   const [isScreenerModalOpen, setIsScreenerModalOpen] = useState(false);
   const [isFaqModalOpen, setIsFaqModalOpen] = useState(false);
 
+  // FIX: Scroll to the top of the page when the component first mounts.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // The empty dependency array ensures this effect runs only once, when the component is first rendered.
+
   const handleOpenRegisterModal = () => {
     setIsRegisterModalOpen(true);
-    setIsLoginModalOpen(false); // Close the other modal
-    setIsScreenerModalOpen(false); // Close the other modal
+    setIsLoginModalOpen(false);
+    setIsScreenerModalOpen(false);
+    setIsFaqModalOpen(false);
   };
 
   const handleCloseRegisterModal = () => {
@@ -40,9 +45,9 @@ function LandingPage() {
 
   const handleOpenLoginModal = () => {
     setIsLoginModalOpen(true);
-    setIsRegisterModalOpen(false); // Close the other modal
-    setIsScreenerModalOpen(false); // Close the other modal
-    setIsFaqModalOpen(false)
+    setIsRegisterModalOpen(false);
+    setIsScreenerModalOpen(false);
+    setIsFaqModalOpen(false);
   };
 
   const handleCloseLoginModal = () => {
@@ -53,7 +58,7 @@ function LandingPage() {
     setIsScreenerModalOpen(true);
     setIsRegisterModalOpen(false);
     setIsLoginModalOpen(false);
-    setIsFaqModalOpen(false)
+    setIsFaqModalOpen(false);
   };
 
   const handleCloseScreenerModal = () => {
@@ -87,9 +92,6 @@ function LandingPage() {
         <Courses onRegisterClick={handleOpenRegisterModal} />
         <Modules />
         <Bonus onRegisterClick={handleOpenRegisterModal} />
-        <LazyLoadWidgetWrapper>
-          <TradingViewChart />
-        </LazyLoadWidgetWrapper>
         <WhyUs />
         <Testimonials />
         <Contact />
@@ -98,17 +100,13 @@ function LandingPage() {
       <Footer />
 
       <FloatingScreenerButton onClick={handleOpenScreenerModal} />
-
       <FloatingButtons />
-      <FloatingFaqButton onClick={handleOpenFaqModal} /> {/* Add the new button here */}
+      <FloatingFaqButton onClick={handleOpenFaqModal} />
+      
       {isRegisterModalOpen && <RegistrationModal isOpen={isRegisterModalOpen} onClose={handleCloseRegisterModal} />}
       {isLoginModalOpen && <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} onRegisterClick={handleOpenRegisterModal} />}
-
-      <MarketScreenerModal
-        isOpen={isScreenerModalOpen}
-        onClose={handleCloseScreenerModal}
-      />
-      <FaqModal isOpen={isFaqModalOpen} onClose={handleCloseFaqModal} />
+      {isScreenerModalOpen && <MarketScreenerModal isOpen={isScreenerModalOpen} onClose={handleCloseScreenerModal} />}
+      {isFaqModalOpen && <FaqModal isOpen={isFaqModalOpen} onClose={handleCloseFaqModal} />}
     </>
   );
 }
