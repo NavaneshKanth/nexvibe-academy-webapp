@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Bars3Icon, XMarkIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -8,14 +12,11 @@ const navItems = [
   { label: "Why Us", href: "#why-us" },
   { label: "Contact", href: "#contact" },
 ];
-
 const Navbar = ({ onLoginClick, onRegisterClick }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Close mobile menu on resize
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const resize = () => {
-      if (window.innerWidth >= 1024) setIsOpen(false);
+      if (window.innerWidth >= 1024) setMenuOpen(false);
     };
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
@@ -24,8 +25,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-[80%]">
       <nav
-        className="rounded-full shadow-2xl border border-[rgba(255,255,255,0.2)]
-          bg-[var(--color-primary)]/70 backdrop-blur-lg px-7 lg:px-6 py-2 flex items-center justify-between transition-all duration-500"
+        className="rounded-full shadow-2xl border border-[rgba(255,255,255,0.2)] bg-[var(--color-primary)]/70 backdrop-blur-lg px-7 lg:px-6 py-2 flex items-center justify-between transition-all duration-500"
       >
         {/* Brand */}
         <a
@@ -41,15 +41,13 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
             NEXVIBE
           </span>
         </a>
-
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-1 xl:gap-2">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="relative px-3 py-2 text-[var(--color-text-body)] font-semibold drop-shadow-md text-nowrap
-                hover:text-[var(--color-secondary)] transition-colors group"
+              className="relative px-3 py-2 text-[var(--color-text-body)] font-semibold drop-shadow-md text-nowrap hover:text-[var(--color-secondary)] transition-colors group"
             >
               <span>{item.label}</span>
               <span
@@ -60,75 +58,79 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
           ))}
           <button
             onClick={onLoginClick}
-            className="ml-4 px-4 py-2 border border-[var(--color-secondary)] text-[var(--color-secondary)] rounded-full
-              font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition duration-200 drop-shadow flex-shrink-0"
+            className="ml-4 px-4 py-2 border border-[var(--color-secondary)] text-[var(--color-secondary)] rounded-full font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition duration-200 drop-shadow flex-shrink-0"
           >
             Login
           </button>
           <button
             onClick={onRegisterClick}
-            className="px-6 py-2 bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold rounded-full shadow-lg ml-3 flex items-center gap-2
-              hover:bg-[var(--color-accent)] hover:shadow-2xl transition-all drop-shadow flex-shrink-0"
+            className="px-6 py-2 bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold rounded-full shadow-lg ml-3 flex items-center gap-2 hover:bg-[var(--color-accent)] hover:shadow-2xl transition-all drop-shadow flex-shrink-0"
           >
             Register
             <ChevronRightIcon className="w-4 h-4" />
           </button>
         </div>
-
-        {/* Mobile hamburger */}
+        {/* Mobile Burger */}
         <button
-          onClick={() => setIsOpen((v) => !v)}
-          className="lg:hidden z-50 text-[var(--color-on-primary)] focus:outline-none drop-shadow-md"
-          aria-label="Open navigation"
+          className="lg:hidden flex items-center justify-center ml-2"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open Menu"
         >
-          {isOpen ? <XMarkIcon className="h-8 w-8" /> : <Bars3Icon className="h-8 w-8" />}
+          <Bars3Icon className="w-8 h-8" style={{ color: "var(--color-secondary)" }} />
         </button>
       </nav>
-
-      {/* Mobile sheet */}
-      <div
-        className={`fixed inset-0 bg-[var(--color-primary)]/90 backdrop-blur-lg z-40 flex flex-col justify-center items-center lg:hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-        style={{ top: 0 }}
-      >
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-7 right-7 text-[var(--color-on-primary)] focus:outline-none drop-shadow-md"
+      {/* Mobile Drawer Menu */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/50 flex lg:hidden"
+          onClick={() => setMenuOpen(false)}
         >
-          <XMarkIcon className="h-8 w-8" />
-        </button>
-        <div className="flex flex-col gap-7 text-center text-2xl font-semibold mt-12">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[var(--color-on-primary)] hover:text-[var(--color-secondary)] transition-colors drop-shadow-md"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-        <div className="flex flex-col gap-4 w-full mt-12 max-w-xs px-6">
-          <button
-            onClick={() => {
-              onLoginClick();
-              setIsOpen(false);
+          <div
+            className="w-72 max-w-full h-full bg-[var(--color-primary)] text-white flex flex-col py-4 px-4 gap-2 shadow-2xl relative"
+            style={{
+              minWidth: "200px",
             }}
-            className="w-full px-4 py-2 rounded-full border border-[var(--color-secondary)] text-[var(--color-secondary)] font-semibold text-center hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-primary)] transition-colors drop-shadow"
+            onClick={e => e.stopPropagation()}
           >
-            Login
-          </button>
-          <button
-            onClick={() => {
-              onRegisterClick();
-              setIsOpen(false);
-            }}
-            className="w-full px-5 py-2 rounded-full text-center bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold shadow-lg hover:bg-[var(--color-accent)] hover:scale-105 hover:shadow-xl transition-all drop-shadow"
-          >
-            Register
-          </button>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-lg font-bold">Menu</span>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="text-white p-1"
+                aria-label="Close"
+              >
+                <XMarkIcon className="w-7 h-7" style={{ color: "var(--color-secondary)" }} />
+              </button>
+            </div>
+            <div className="flex flex-col gap-1 mt-2">
+              {navItems.map(item => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-base font-semibold rounded-lg px-2 py-2 hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-primary)] transition"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <button
+                onClick={() => { setMenuOpen(false); onLoginClick && onLoginClick(); }}
+                className="mt-3 px-3 py-2 border border-[var(--color-secondary)] text-[var(--color-secondary)] rounded-full font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => { setMenuOpen(false); onRegisterClick && onRegisterClick(); }}
+                className="px-4 py-2 bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold rounded-full shadow mt-2 flex items-center gap-2 hover:bg-[var(--color-accent)] transition-all"
+              >
+                Register
+                <ChevronRightIcon className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          <div className="flex-1" />
         </div>
-      </div>
+      )}
     </header>
   );
 };
