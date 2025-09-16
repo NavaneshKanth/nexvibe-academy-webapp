@@ -82,53 +82,45 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
       {/* Mobile Drawer Menu */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/50 flex lg:hidden"
+          className="fixed inset-0 z-50 bg-[var(--color-primary)] flex flex-col justify-start items-center lg:hidden transition-all duration-300"
+          style={{ minHeight: "100vh", minWidth: "100vw" }}
           onClick={() => setMenuOpen(false)}
         >
-          <div
-            className="w-72 max-w-full h-full bg-[var(--color-primary)] text-white flex flex-col py-4 px-4 gap-2 shadow-2xl relative"
-            style={{
-              minWidth: "200px",
-            }}
-            onClick={e => e.stopPropagation()}
+          {/* Close Button - top right, position absolute */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-6 right-6 text-white bg-[var(--color-secondary)] rounded-full p-2"
+            aria-label="Close"
+            style={{ boxShadow: "0 2px 10px rgba(0,0,0,.08)" }}
           >
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-lg font-bold">Menu</span>
-              <button
+            <XMarkIcon className="w-7 h-7" />
+          </button>
+          {/* Menu links, centered */}
+          <nav className="flex flex-col gap-6 mt-28 w-full items-center">
+            {navItems.map(item => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-xl font-semibold px-8 py-4 rounded-lg hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-primary)] w-4/5 text-center transition"
                 onClick={() => setMenuOpen(false)}
-                className="text-white p-1"
-                aria-label="Close"
               >
-                <XMarkIcon className="w-7 h-7" style={{ color: "var(--color-secondary)" }} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-1 mt-2">
-              {navItems.map(item => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-base font-semibold rounded-lg px-2 py-2 hover:bg-[var(--color-secondary)] hover:text-[var(--color-on-primary)] transition"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <button
-                onClick={() => { setMenuOpen(false); onLoginClick && onLoginClick(); }}
-                className="mt-3 px-3 py-2 border border-[var(--color-secondary)] text-[var(--color-secondary)] rounded-full font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => { setMenuOpen(false); onRegisterClick && onRegisterClick(); }}
-                className="px-4 py-2 bg-[var(--color-secondary)] text-[var(--color-on-primary)] font-bold rounded-full shadow mt-2 flex items-center gap-2 hover:bg-[var(--color-accent)] transition-all"
-              >
-                Register
-                <ChevronRightIcon className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-          <div className="flex-1" />
+                {item.label}
+              </a>
+            ))}
+            <button
+              onClick={() => { setMenuOpen(false); onLoginClick && onLoginClick(); }}
+              className="w-4/5 py-3 mt-4 border border-[var(--color-secondary)] text-[var(--color-secondary)] text-lg rounded-full font-semibold hover:bg-[var(--color-secondary)] hover:text-white transition"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => { setMenuOpen(false); onRegisterClick && onRegisterClick(); }}
+              className="w-4/5 py-3 bg-[var(--color-secondary)] text-[var(--color-on-primary)] text-lg font-bold rounded-full shadow mt-2 flex items-center gap-2 justify-center hover:bg-[var(--color-accent)] transition-all"
+            >
+              Register
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
+          </nav>
         </div>
       )}
     </header>
