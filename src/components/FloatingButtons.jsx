@@ -87,7 +87,7 @@ export default function FloatingButtons() {
               <PhoneIcon className="w-6 h-6" />
             </motion.a>
             <motion.a
-              href="mailto:contact@nexvibe.info"
+              href="mailto:nexvibeacademy@gmail.com"
               className="bg-[var(--color-secondary)] hover:bg-[var(--color-accent)] text-white p-4 rounded-full shadow-lg transition-colors flex items-center justify-center"
               variants={menuItemVariants}
             >

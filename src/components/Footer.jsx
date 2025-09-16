@@ -27,8 +27,8 @@ function Footer() {
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
               <address className="not-italic text-sm space-y-2 text-[var(--color-text-body)] opacity-80">
                 <p>Business Bay, Dubai, UAE</p>
-                <a href="mailto:nexvibeinstitute@gmail.com" className="block hover:underline">
-                  nexvibeinstitute@gmail.com
+                <a href="mailto:nexvibeacademy@gmail.com" className="block hover:underline">
+                  nexvibeacademy@gmail.com
                 </a>
                 <a href="tel:+971522967505" className="block hover:underline">
                   +971 52 296 7505
