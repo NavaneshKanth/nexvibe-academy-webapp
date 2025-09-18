@@ -67,14 +67,14 @@ function Courses({ onRegisterClick }) {
                   Classroom Training
                 </h3>
                 <p className="text-lg font-medium text-gray-500 mb-2">
-                 Regional Office
+                 Corporate Office
                 </p>
                 <div className="flex items-end gap-2">
                   <span className="text-4xl font-extrabold text-[var(--color-accent-dark)]">
                     AED 2,500
                   </span>
                   <span className="text-base text-gray-400 line-through mt-1">
-                    AED 3,500
+                    AED 4,500
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">(Opening Offer)</p>
@@ -95,7 +95,7 @@ function Courses({ onRegisterClick }) {
                     AED 2,000
                   </span>
                   <span className="text-base text-gray-400 line-through mt-1">
-                    AED 3,000
+                    AED 4,000
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">(Opening Offer)</p>
