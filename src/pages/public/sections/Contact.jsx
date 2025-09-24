@@ -62,7 +62,7 @@ function Contact() {
                     href="mailto:info@dubaitradingacademy.com"
                     className="text-lg text-[var(--color-text-body)] hover:text-[var(--color-secondary)] transition-colors"
                   >
-                    nexvibeinstitute@gmail.com
+                    nexvibeacademy@gmail.com
                   </a>
                 </div>
               </div>
