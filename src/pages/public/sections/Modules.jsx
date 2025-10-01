@@ -80,7 +80,7 @@ export default function ModulesRoadmap() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            Your Trading Roadmap
+            Your <span className="text-[var(--color-secondary)]">Trading</span> Roadmap
           </motion.h2>
         </div>
 
@@ -101,9 +101,8 @@ export default function ModulesRoadmap() {
               return (
                 <motion.div
                   key={i}
-                  className={`group relative flex items-center w-full ${
-                    isLeft ? "justify-start pl-8 lg:pl-0" : "justify-end pr-8 lg:pr-0"
-                  }`}
+                  className={`group relative flex items-center w-full ${isLeft ? "justify-start pl-8 lg:pl-0" : "justify-end pr-8 lg:pr-0"
+                    }`}
                   variants={moduleVariants}
                 >
                   {/* Timeline Dot */}

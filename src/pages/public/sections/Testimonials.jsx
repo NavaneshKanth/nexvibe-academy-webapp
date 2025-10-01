@@ -25,34 +25,39 @@ function Testimonials() {
   return (
     <motion.section
       id="testimonials"
-      className="relative py-20 bg-gradient-to-r from-white via-gray-50 to-white text-[var(--color-text-body)] overflow-hidden"
+      className="relative py-20 lg:py-28 bg-gradient-to-r from-gray-50 via-white to-gray-50 text-[var(--color-text-body)] overflow-hidden"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div className="container mx-auto max-w-6xl px-6 lg:px-12">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="flex items-center justify-start mb-6"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12"
           variants={itemVariants}
         >
-          <ChatBubbleLeftRightIcon className="w-14 h-14 text-[var(--color-secondary)]" />
-          <h2 className="text-4xl sm:text-5xl font-extrabold ml-4 leading-tight text-[var(--color-text-dark)]">
-            What Our <span className="text-[var(--color-secondary)]">Students Say</span>
-          </h2>
+          <div>
+            <div className="flex items-center mb-2">
+                <ChatBubbleLeftRightIcon className="w-8 h-8 text-[var(--color-secondary)]" />
+                <p className="text-sm font-bold uppercase tracking-widest text-[var(--color-primary)] ml-3">
+                    Verified Success Stories
+                </p>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight text-[var(--color-text-dark)]">
+              Real Results From Our <span className="text-[var(--color-secondary)]">Traders</span>
+            </h2>
+          </div>
         </motion.div>
 
         <motion.p
-          className="max-w-3xl text-left mb-12 text-lg sm:text-xl text-[var(--color-text-dark)]/90"
+          className="max-w-4xl text-left mb-16 text-lg sm:text-xl text-[var(--color-text-dark)]/80"
           variants={itemVariants}
         >
-          Hear from traders who have transformed their skills and career with our comprehensive courses.
+          Hear directly from students across the globe—from Dubai to Kerala—who have transformed their trading skills and achieved financial consistency with our mentorship program.
         </motion.p>
 
-        {/* Testimonials Slider */}
-        <div className="px-4 sm:px-0">
-          <TestimonialsSlider />
-        </div>
+        {/* Testimonials Slider (Now integrated) */}
+        <TestimonialsSlider />
       </div>
     </motion.section>
   );

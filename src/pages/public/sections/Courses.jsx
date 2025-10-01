@@ -34,12 +34,12 @@ function Courses({ onRegisterClick }) {
     >
       {/* Blob background using the imported variable */}
       <div
-        className="pointer-events-none absolute inset-0  z-0"
+        className="pointer-events-none absolute inset-0 z-0"
         style={{
           backgroundImage: `url("/blobBG.svg")`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'bottom right',
-          backgroundSize: '120%',
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "bottom right",
+          backgroundSize: "120%",
         }}
         aria-hidden="true"
       />
@@ -59,6 +59,17 @@ function Courses({ onRegisterClick }) {
             className="w-full lg:max-w-4xl mx-auto space-y-8 p-8 rounded-2xl bg-white shadow-lg border border-gray-200"
             variants={itemVariants}
           >
+            {/* NEW: Batch Start Announcement */}
+            <div className="text-center mb-6 pt-2 pb-3 bg-red-50 border border-dashed border-[var(--color-accent-dark)] rounded-xl">
+              <p className="text-lg font-extrabold text-[var(--color-accent-dark)] tracking-wider uppercase">
+                🚨 Next Batch Starts: October 15th
+              </p>
+              <p className="text-sm font-medium text-gray-700 mt-1">
+                Enroll now to secure your spot in the upcoming session!
+              </p>
+            </div>
+            {/* End NEW: Batch Start Announcement */}
+
             {/* Pricing Details */}
             <div className="flex flex-col md:flex-row justify-around items-center gap-6">
               {/* Classroom Training */}
@@ -67,7 +78,7 @@ function Courses({ onRegisterClick }) {
                   Classroom Training
                 </h3>
                 <p className="text-lg font-medium text-gray-500 mb-2">
-                 Corporate Office
+                  Corporate Office
                 </p>
                 <div className="flex items-end gap-2">
                   <span className="text-4xl font-extrabold text-[var(--color-accent-dark)]">
@@ -110,11 +121,16 @@ function Courses({ onRegisterClick }) {
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base font-medium text-gray-600">
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-[var(--color-accent-dark)] flex-shrink-0 mt-1" />
-                  <span>Lifetime mentorship & access to our exclusive trader community.</span>
+                  <span>
+                    Lifetime mentorship & access to our exclusive trader
+                    community.
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-[var(--color-accent-dark)] flex-shrink-0 mt-1" />
-                  <span>Comprehensive course materials and live trading sessions.</span>
+                  <span>
+                    Comprehensive course materials and live trading sessions.
+                  </span>
                 </li>
               </ul>
             </div>

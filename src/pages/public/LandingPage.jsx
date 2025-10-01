@@ -20,6 +20,7 @@ import MarketScreenerModal from "../../components/MarketScreenerModal";
 import FloatingFaqButton from "../../components/FloatingFaqButton";
 import FaqModal from "../../components/FaqModal";
 import LearnTradeEarn from "../../components/LearnTradeEarn";
+import VideoExplainer from "./sections/VideoExplainer";
 
 function LandingPage() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
@@ -88,6 +89,7 @@ function LandingPage() {
           <TradingViewWidget />
         </LazyLoadWidgetWrapper>
         <LearnTradeEarn />
+        <VideoExplainer />
         <About />
         <Courses onRegisterClick={handleOpenRegisterModal} />
         <Modules />

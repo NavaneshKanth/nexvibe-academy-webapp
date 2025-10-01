@@ -4,7 +4,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import CountdownTimer from "../../../components/CountdownTimer";
 
 function FinalCta({ onRegisterClick }) {
-  const targetDate = new Date("2025-09-30T23:59:59");
+  const targetDate = new Date("2025-10-15T23:59:59");
 
   return (
     <motion.section
